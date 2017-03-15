@@ -2,6 +2,7 @@ package pl.mn.banana.core.world;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,10 +21,23 @@ public class CoreWorld {
 	private List food;
 
 	public CoreWorld(OrthographicCamera coreCamera) {
-		enemies = new ArrayList();
-		obstacles = new ArrayList();
-		food = new ArrayList();
+		enemies = generateEnemies();
+		obstacles = generateObstacles();
+		food = generateFood();
 		player = new Player();
+	}
+
+	private ArrayList generateFood() {
+		IntStream.empty();
+		return new ArrayList();
+	}
+
+	private ArrayList generateObstacles() {
+		return new ArrayList();
+	}
+
+	private ArrayList generateEnemies() {
+		return new ArrayList();
 	}
 
 	public Stage getStage() {
