@@ -14,6 +14,7 @@ import pl.mn.banana.core.object.Player;
  */
 public class CoreWorld {
 
+	private static final Long FOOD_GENERATE_LIMIT = 5L;
 	private Stage stage;
 	private Player player;
 	private List enemies;
@@ -28,7 +29,8 @@ public class CoreWorld {
 	}
 
 	private ArrayList generateFood() {
-		IntStream.empty();
+		IntStream.iterate(0, i -> i+ 1)
+				.limit(FOOD_GENERATE_LIMIT); // TODO: mnicinski no i lecimy
 		return new ArrayList();
 	}
 
