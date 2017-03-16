@@ -26,6 +26,10 @@ public class CoreRenderer {
 	}
 
 	public void render(float delta) {
-
+		batcher.begin();
+		world.getStage()
+				.getActors()
+				.forEach(actor -> actor.draw(batcher, 1));
+		batcher.end();
 	}
 }

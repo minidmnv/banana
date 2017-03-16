@@ -45,6 +45,7 @@ public class CoreWorld {
 		enemies.forEach(stage::addActor);
 		obstacles.forEach(stage::addActor);
 		food.forEach(stage::addActor);
+		stage.addActor(player);
 	}
 
 	private void generateFood() {
