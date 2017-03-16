@@ -27,11 +27,6 @@ public class CoreScreen extends ScreenAdapter implements GestureListener {
 		renderer = new CoreRenderer(world, coreCamera);
 	}
 
-	public CoreScreen(CoreWorld world) {
-
-		this.world = world;
-	}
-
 	@Override
 	public void render(float delta) {
 		world.update(delta);
