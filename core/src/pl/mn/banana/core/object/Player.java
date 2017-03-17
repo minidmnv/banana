@@ -3,18 +3,17 @@ package pl.mn.banana.core.object;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * @author mnicinski
  */
-public class Player extends Actor {
+public class Player extends AbstractActor {
 
 	private Integer lives;
 	private float speed;
-	private TextureRegion look = new TextureRegion(new Texture("player_ship_good.png"));
 
 	public Player() {
+		super(new Texture("player_ship_good.png"));
 		setX(85f);
 		setY(635f);
 		setWidth(look.getRegionWidth());

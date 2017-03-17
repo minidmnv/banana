@@ -14,13 +14,16 @@ import pl.mn.banana.core.world.CoreWorld;
  */
 public class CoreScreen extends ScreenAdapter implements GestureListener {
 
+	public static final int VIEWPORT_WIDTH = 2560;
+	public static final int VIEWPORT_HEIGHT = 1600;
+
 	private CoreWorld world;
 	private CoreRenderer renderer;
 	private OrthographicCamera coreCamera;
 
 	public CoreScreen() {
 		coreCamera = new OrthographicCamera();
-		coreCamera.setToOrtho(true, 2560, 1600);
+		coreCamera.setToOrtho(true, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
 		world = new CoreWorld(coreCamera);
 		Gdx.input.setInputProcessor(world.getStage());
@@ -30,7 +33,7 @@ public class CoreScreen extends ScreenAdapter implements GestureListener {
 	@Override
 	public void render(float delta) {
 		world.update(delta);
-		renderer.render(delta);
+		renderer.render();
 	}
 
 	@Override
