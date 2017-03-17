@@ -1,18 +1,25 @@
 package pl.mn.banana.core.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 
+import javafx.scene.input.KeyCode;
 import pl.mn.banana.core.renderer.CoreRenderer;
 import pl.mn.banana.core.world.CoreWorld;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import static javafx.scene.input.KeyCode.E;
 
 /**
  * @author mnicinski
  */
-public class CoreScreen extends ScreenAdapter implements GestureListener {
+public class CoreScreen extends ScreenAdapter implements GestureListener, KeyListener {
 
 	public static final int VIEWPORT_WIDTH = 2560;
 	public static final int VIEWPORT_HEIGHT = 1600;
@@ -75,4 +82,27 @@ public class CoreScreen extends ScreenAdapter implements GestureListener {
 	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
 		return false;
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+
+		switch (keyCode) {
+			case Input.Keys.D:
+				world.getPlayer().speedUp(70, 0);
+				break;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
+
+
 }

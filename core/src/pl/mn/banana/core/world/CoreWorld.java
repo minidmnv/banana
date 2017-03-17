@@ -99,4 +99,7 @@ public class CoreWorld {
 				obstacle.getY() - obstacle.getHeight() > VIEWPORT_HEIGHT;
 	}
 
+	public Player getPlayer() {
+		return player;
+	}
 }
