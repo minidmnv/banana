@@ -23,6 +23,7 @@ public class Player extends AbstractActor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
 		batch.draw(look, getX(), getY(), getWidth() / 2, getHeight() / 2,
 				getWidth(), getHeight(), 1, 1, getRotation());
 	}

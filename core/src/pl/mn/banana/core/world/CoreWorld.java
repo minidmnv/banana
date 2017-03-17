@@ -40,7 +40,12 @@ public class CoreWorld {
 		generateEnemies();
 		generateObstacles(OBSTACLE_GENERATE_LIMIT);
 		generateFood();
-		stage.addActor(new Player());
+		stage.addActor(generatePlayer());
+	}
+
+	private Player generatePlayer() {
+		player = new Player();
+		return player;
 	}
 
 	private void generateFood() {

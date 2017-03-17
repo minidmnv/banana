@@ -8,6 +8,7 @@ import pl.mn.banana.core.screen.CoreScreen;
 public class BananaGame extends Game {
 
 	private static final String TAG = "BananaGame";
+	public static final boolean DEBUG_MODE = true;
 
 	@Override
 	public void create () {

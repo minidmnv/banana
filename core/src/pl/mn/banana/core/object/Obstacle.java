@@ -32,6 +32,7 @@ public class Obstacle extends AbstractActor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
 		batch.draw(look, getX(), getY());
 	}
 
