@@ -2,6 +2,7 @@ package pl.mn.banana.core.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
@@ -19,7 +20,7 @@ import static javafx.scene.input.KeyCode.E;
 /**
  * @author mnicinski
  */
-public class CoreScreen extends ScreenAdapter implements GestureListener, KeyListener {
+public class CoreScreen extends ScreenAdapter implements GestureListener, InputProcessor {
 
 	public static final int VIEWPORT_WIDTH = 2560;
 	public static final int VIEWPORT_HEIGHT = 1600;
@@ -33,7 +34,7 @@ public class CoreScreen extends ScreenAdapter implements GestureListener, KeyLis
 		coreCamera.setToOrtho(true, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
 		world = new CoreWorld(coreCamera);
-		Gdx.input.setInputProcessor(world.getStage());
+		Gdx.input.setInputProcessor(this);
 		renderer = new CoreRenderer(world, coreCamera);
 	}
 
@@ -84,25 +85,48 @@ public class CoreScreen extends ScreenAdapter implements GestureListener, KeyLis
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-
-		switch (keyCode) {
+	public boolean keyDown(int keycode) {
+		switch (keycode) {
 			case Input.Keys.D:
-				world.getPlayer().speedUp(70, 0);
+				world.getPlayer().speedUp(10, 0);
 				break;
 		}
+
+		return true;
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-
+	public boolean keyUp(int keycode) {
+		return false;
 	}
 
+	@Override
+	public boolean keyTyped(char character) {
+		return false;
+	}
 
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		return false;
+	}
 }
