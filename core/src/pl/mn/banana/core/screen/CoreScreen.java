@@ -88,7 +88,7 @@ public class CoreScreen extends ScreenAdapter implements GestureListener, InputP
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
 			case Input.Keys.D:
-				world.getPlayer().speedUp(10, 0);
+				world.getPlayer().speedUp(1, 0);
 				break;
 		}
 

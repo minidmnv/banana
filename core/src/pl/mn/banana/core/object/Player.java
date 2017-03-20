@@ -17,7 +17,8 @@ public class Player extends AbstractActor {
 	private static final float SLOW_DOWN_MULTIPLIER = 5.5f;
 
 	private Integer lives;
-	private float speed;
+	private float speed = 12;
+	private float accelerationAttribute = 10;
 	private Vector2 velocity = new Vector2(0,0);
 	private Vector2 acceleration = new Vector2(0, 0);
 
@@ -43,8 +44,7 @@ public class Player extends AbstractActor {
 
 	@Override
 	public void act(float delta) {
-		velocity.x += acceleration.x;
-		velocity.y += acceleration.y;
+		speedUp();
 
 		rotate();
 		moveBy(velocity.x, velocity.y);
@@ -54,6 +54,13 @@ public class Player extends AbstractActor {
 
 	private void rotate() {
 		setRotation(-90); // TODO: mnicinski (((x*degy + y*degy) / x+y) + currDeg) / x+y
+	}
+
+	private void speedUp() {
+		velocity.x += acceleration.x;
+		velocity.x = velocity.x > speed ? speed : velocity.x;
+
+		// TODO: mnicinski Y!
 	}
 
 	private void slowDown(float delta) {
@@ -74,7 +81,7 @@ public class Player extends AbstractActor {
 	}
 
 	public void speedUp(int x, int y) {
-		acceleration.x += x;
-		acceleration.y += y;
+		acceleration.x += x * accelerationAttribute;
+		acceleration.y += y * accelerationAttribute;
 	}
 }
