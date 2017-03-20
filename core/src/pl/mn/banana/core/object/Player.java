@@ -17,8 +17,8 @@ public class Player extends AbstractActor {
 	private static final float SLOW_DOWN_MULTIPLIER = 5.5f;
 
 	private Integer lives;
-	private float speed = 12;
-	private float accelerationAttribute = 10;
+	private float speed = 8;
+	private float accelerationAttribute = 5;
 	private Vector2 velocity = new Vector2(0,0);
 	private Vector2 acceleration = new Vector2(0, 0);
 
@@ -37,8 +37,8 @@ public class Player extends AbstractActor {
 		batch.draw(look, getX(), getY(), getWidth() / 2, getHeight() / 2,
 				getWidth(), getHeight(), 1, 1, getRotation());
 		if (BananaGame.DEBUG_MODE) {
-			Assets.instance.font.smallFont.draw(batch, String.format(Locale.getDefault(), "Acceleration: x %f, y %f, Velocity: x %f, y %f",
-					acceleration.x, acceleration.y, velocity.x, velocity.y), 10, 85);
+			Assets.instance.font.smallFont.draw(batch, String.format(Locale.getDefault(), "Rotation: %f, Velocity: x %f, y %f",
+					getRotation(), velocity.x, velocity.y), 10, 45);
 		}
 	}
 
@@ -53,14 +53,20 @@ public class Player extends AbstractActor {
 	}
 
 	private void rotate() {
-		setRotation(-90); // TODO: mnicinski (((x*degy + y*degy) / x+y) + currDeg) / x+y
+		float rotation = (((velocity.x * (-90) + velocity.y * 0) / velocity.x + velocity.y) + getRotation())
+				/ (velocity.x + velocity.y);
+
+		if (!(rotation != rotation)) {
+			setRotation(rotation); // TODO: mnicinski (((x*degy + y*degy) / x+y) + currDeg) / x+y
+		}
 	}
 
 	private void speedUp() {
 		velocity.x += acceleration.x;
 		velocity.x = velocity.x > speed ? speed : velocity.x;
 
-		// TODO: mnicinski Y!
+		velocity.y += acceleration.y;
+		velocity.y = velocity.y > speed ? speed : velocity.y;
 	}
 
 	private void slowDown(float delta) {

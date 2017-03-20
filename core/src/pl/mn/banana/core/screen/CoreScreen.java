@@ -90,6 +90,10 @@ public class CoreScreen extends ScreenAdapter implements GestureListener, InputP
 			case Input.Keys.D:
 				world.getPlayer().speedUp(1, 0);
 				break;
+			case Input.Keys.S:
+				world.getPlayer().speedUp(0, 1);
+				break;
+
 		}
 
 		return true;
