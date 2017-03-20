@@ -1,9 +1,11 @@
 package pl.mn.banana.core.object;
 
+import java.util.Locale;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+
 import pl.mn.banana.BananaGame;
 import pl.mn.banana.util.Assets;
 
@@ -34,7 +36,7 @@ public class Player extends AbstractActor {
 		batch.draw(look, getX(), getY(), getWidth() / 2, getHeight() / 2,
 				getWidth(), getHeight(), 1, 1, getRotation());
 		if (BananaGame.DEBUG_MODE) {
-			Assets.instance.font.smallFont.draw(batch, String.format("Acceleration: x %f, y %f, Velocity: x %f, y %f",
+			Assets.instance.font.smallFont.draw(batch, String.format(Locale.getDefault(), "Acceleration: x %f, y %f, Velocity: x %f, y %f",
 					acceleration.x, acceleration.y, velocity.x, velocity.y), 10, 85);
 		}
 	}
@@ -42,12 +44,20 @@ public class Player extends AbstractActor {
 	@Override
 	public void act(float delta) {
 		velocity.x += acceleration.x;
+		velocity.y += acceleration.y;
+
+		rotate();
 		moveBy(velocity.x, velocity.y);
-		acceleration = new Vector2(0,0);
+
 		slowDown(delta);
 	}
 
+	private void rotate() {
+		setRotation(-90); // TODO: mnicinski (((x*degy + y*degy) / x+y) + currDeg) / x+y
+	}
+
 	private void slowDown(float delta) {
+		acceleration = new Vector2(0,0);
 		float slowDownSpeed = SLOW_DOWN_MULTIPLIER * delta;
 
 		if (velocity.x > 0) {
