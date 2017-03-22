@@ -53,11 +53,10 @@ public class Player extends AbstractActor {
 	}
 
 	private void rotate() {
-		float rotation = (((velocity.x * (-90) + velocity.y * 0) / velocity.x + velocity.y) + getRotation())
-				/ (velocity.x + velocity.y);
+		float rotation = getRotation() + (velocity.y - velocity.x) * 2;
 
 		if (!(rotation != rotation)) {
-			setRotation(rotation); // TODO: mnicinski (((x*degy + y*degy) / x+y) + currDeg) / x+y
+			setRotation(rotation); // TODO: mnicinski wymyslic cos lepszego :/
 		}
 	}
 
