@@ -53,10 +53,14 @@ public class Player extends AbstractActor {
 	}
 
 	private void rotate() {
-		float rotation = getRotation() + (velocity.y - velocity.x) * 2;
+		float velXValue = (float) (Math.pow(velocity.x, 0) * -90);
+		float velYValue = velocity.y > 0 ? 0 : velXValue * 2;
+		float rotationVal = Math.abs(getRotation()) -
+				Math.abs((velocity.x * velXValue + velocity.y * velYValue) / (velocity.x + velocity.y));
+		float rotation = getRotation() + rotationVal;
 
 		if (!(rotation != rotation)) {
-			setRotation(rotation); // TODO: mnicinski wymyslic cos lepszego :/
+			setRotation(rotation);
 		}
 	}
 
