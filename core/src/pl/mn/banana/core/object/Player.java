@@ -55,6 +55,7 @@ public class Player extends AbstractActor {
 	private void rotate() {
 		float velXValue = (float) (Math.pow(velocity.x, 0) * -90);
 		float velYValue = velocity.y > 0 ? 0 : velXValue * 2;
+
 		float rotationVal = Math.abs(getRotation()) -
 				Math.abs((velocity.x * velXValue + velocity.y * velYValue) / (velocity.x + velocity.y));
 		float rotation = getRotation() + rotationVal;
@@ -66,10 +67,10 @@ public class Player extends AbstractActor {
 
 	private void speedUp() {
 		velocity.x += acceleration.x;
-		velocity.x = velocity.x > speed ? speed : velocity.x;
+		velocity.x = Math.abs(velocity.x) > speed ? speed : velocity.x;
 
 		velocity.y += acceleration.y;
-		velocity.y = velocity.y > speed ? speed : velocity.y;
+		velocity.y = Math.abs(velocity.y) > speed ? speed : velocity.y;
 	}
 
 	private void slowDown(float delta) {
